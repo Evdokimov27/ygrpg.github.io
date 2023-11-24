@@ -98,7 +98,7 @@
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             container.className = "unity-mobile";
-            
+            config.devicePixelRatio = 1;
         }
 
         // Фоновое изображение при загрузке игры. При сборке билда код меняется взависимости от настроек проекта.
@@ -147,7 +147,7 @@
                     console.error(message);
                 });
             };
-            if (LocalHost())
+            // Load Game Run = true
                 StartUnityInstance_IfUnloaded();
         };
 
@@ -701,11 +701,6 @@ function RequestingEnvironmentData(sendback) {
         }
     });
 }
-
-window.addEventListener('beforeunload', (event) => {
-	if(myGameInstance != null) 
-		myGameInstance.SendMessage('YandexGame', '_SaveProgress'); 
-	});
 
 
 var playerData = 'noData';
